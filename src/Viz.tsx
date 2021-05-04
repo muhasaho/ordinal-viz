@@ -13,10 +13,11 @@ interface Props {
   pdfData: Datum[];
   breaks: number[];
   range?: number[];
+  xDomain?: [number, number];
   className?: string;
 }
 
-const Viz = ({ className, breaks, pdfData, title, range }: Props) => {
+const Viz = ({ className, breaks, pdfData, title, range, xDomain }: Props) => {
   const maxY = Math.max(...pdfData.map((d) => d.y)) + 0.001;
 
   return (
@@ -26,7 +27,7 @@ const Viz = ({ className, breaks, pdfData, title, range }: Props) => {
         padding={{ top: 20, bottom: 30 }}
       >
         <VictoryLabel x={0} y={10} text={title} />
-        <VictoryAxis style={{grid: {stroke: 'none'}}} />
+        <VictoryAxis domain={xDomain && {x: xDomain}} style={{grid: {stroke: 'none'}}} />
         <VictoryLine data={pdfData} style={{ data: { stroke: "#009688" } }} />
         {breaks.map((b) => (
           <VictoryLine

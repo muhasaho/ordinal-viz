@@ -48,7 +48,7 @@ const data: { title: string; pdfData: Datum[]; breaks: number[] }[] = [
 function App() {
   return (
     <div className="App">
-      {data.map(d => (<Viz key={d.title} range={[26,74]} className={"Viz"} {...d} />))}
+      {data.map(d => (<Viz key={d.title} range={[26,74]} xDomain={[15, 85]} className={"Viz"} {...d} />))}
     </div>
   );
 }
